@@ -64,7 +64,24 @@ const eventsArray = [
         day: 31,
         month: 1,
         year: 2023
+    },
+    {
+        day: 28,
+        month: 12,
+        year: 2022
     }
+
+    /*{
+        id: <id>,
+        name: <name>,
+        day: 28,
+        month: 12,
+        year: 2022,
+        time_begin: <time>,
+        time_end: <time>,
+        description: <str>,
+        notification: <bool>,
+    }*/
 ]
 
 function initCalendar() {
@@ -134,15 +151,15 @@ function initCalendar() {
             month === new Date().getMonth()
         ) {
             if (hasEvent) {
-                days += `<div class="day today event">${c}</div>`
+                days += `<div class="day today event" onclick="teste();">${c}</div>`
             } else {
-                days += `<div class="day today">${c}</div>`
+                days += `<div class="day today" onclick="teste();">${c}</div>`
             }
         } else {
             if (hasEvent) {
-                days += `<div class="day event">${c}</div>`
+                days += `<div class="day event" onclick="teste();">${c}</div>`
             } else {
-                days += `<div class="day">${c}</div>`
+                days += `<div class="day" onclick="teste();">${c}</div>`
             }
         }
     }

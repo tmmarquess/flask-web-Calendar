@@ -80,6 +80,8 @@ def register():
 
 @app.route("/login", methods=["post", "get"])
 def login():
+    if current_user.is_authenticated != False:
+        return redirect("/calendar")
     if request.method == "GET":
         return render_template("login.html")
     if request.method == "POST":

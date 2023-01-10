@@ -39,5 +39,16 @@ class Evento(db.Entity):
     status = Required(int)
     usuario = Required(Usuario)
 
+'''
+    id = PrimaryKey(int, auto=True)
+    nome = Required(str)
+    data = Required(date)
+    hr_inicio = Required(datetime) (time?)
+    hr_fim = Required(datetime) (time?)
+    descricao = Required(str)
+    notificar = Required(bool)
+    status = Required(int)
+    usuario = Required(Usuario)
+'''
 
 db.generate_mapping(create_tables=True)
