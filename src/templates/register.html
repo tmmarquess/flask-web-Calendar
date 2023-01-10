@@ -5,17 +5,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css')}}">
+    <link rel="stylesheet" href="../static/css/register.css">
+    <title>Register</title>
 </head>
 
 <body>
-    <form action="/register" method="post">
-        <input type="text" name="name" id="name" placeholder="name"><br>
-        <input type="email" name="email" id="email" placeholder="email"><br>
-        <input type="password" name="password" id="password" placeholder="Password"><br>
-        <input type="date" name="birthday" id="birthday" placeholder="birthday"><br>
-        <input type="submit" value="Register">
-    </form>
+    <div class="container">
+        <div class="box">
+            <h1>Calendário</h1>
+            <div class="form">
+                <form action="/register" method="post">
+                    <input type="text" name="name" id="name" placeholder="name"><br>
+                    <input type="email" name="email" id="email" placeholder="email"><br>
+                    <input type="password" name="password" id="password" placeholder="Password"><br>
+                    <input type="date" name="birthday" id="birthday" placeholder="birthday"><br>
+                    <input type="submit" value="Register" id="submit">
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
