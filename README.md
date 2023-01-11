@@ -4,7 +4,7 @@
 
 Projeto de calendário utilizando Flask + SQLite para composição de nota na disciplina de modelagem e projeto de sistemas
 
-> [Documentação](#documentação-🗃️)
+> [Documentação](#documentação-%EF%B8%8F)
 
 ## Executando o projeto 🚀
 
