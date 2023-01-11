@@ -61,7 +61,7 @@ $ python src/
 ### Diagrama de Arquitetura
 <img src="docs/Diagrama de arquitetura.png" alt="" width="500px">
 
-### Diagrama de Implementação
+### Diagrama de Implantação
 <img src="docs/diagrama de implatação.png" alt="" width="500px">
 
 ### Modelo Entidade-relacionamento
