@@ -17,7 +17,7 @@ Antes de começar, você precisa ter instalado no seu computador as ferramentas:
 
 ### Dependências 👨‍💻
 
-> Todas as dependências serão instaladas se você seguir o [guia](#nstalando-a-aplicação-)
+> Todas as dependências serão instaladas se você seguir o [guia](#instalando-a-aplicação-)
 
 * [Flask](https://flask.palletsprojects.com/en/2.2.x/)
 * [Flask-Bcrypt](https://flask-bcrypt.readthedocs.io/en/1.0.1/)
