@@ -1,6 +1,7 @@
 from pony.orm import Database, Required, PrimaryKey, Set
 from flask_login import UserMixin
 from datetime import date, datetime
+from time import time
 
 db = Database()
 db.bind(provider="sqlite", filename="../calendar.db", create_db=True)
@@ -43,17 +44,5 @@ class Evento(db.Entity):
     status = Required(int)
     usuario = Required(Usuario)
 
-
-"""
-    id = PrimaryKey(int, auto=True)
-    nome = Required(str)
-    data = Required(date)
-    hr_inicio = Required(datetime) (time?)
-    hr_fim = Required(datetime) (time?)
-    descricao = Required(str)
-    notificar = Required(bool)
-    status = Required(int)
-    usuario = Required(Usuario)
-"""
 
 db.generate_mapping(create_tables=True)

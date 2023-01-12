@@ -40,6 +40,9 @@ def login():
 @app.route("/calendar")
 @login_required
 def calendar():
+    print("=====================")
+    print(database.get_all_user_events(current_user))
+    print("=====================")
     return render_template("calendar.html")
 
 
