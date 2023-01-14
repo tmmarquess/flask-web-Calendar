@@ -1,7 +1,7 @@
-import modules.database as database
-from resources.app import app, bcrypt, authenticate_user, db_session
+import modules.database.evento_repository as evento_repository
+from resources.app import app
 from flask import redirect, request, render_template
-from flask_login import current_user, login_required, logout_user
+from flask_login import current_user, login_required
 
 
 @app.route("/create_event", methods=["post", "get"])
@@ -15,15 +15,14 @@ def create_event():
         print(request.form["hr_inicio"])
         print(type(request.form["hr_inicio"]))
         print(request.form["hr_fim"])
-        print(request.form["descricao"])
-        print((False if request.form.get("notificar") is None else True))
+        print(bool(request.form.get("notificar")))
         print("==========================")
-        database.add_event(
+        evento_repository.add_event(
             request.form["nome"],
             request.form["hr_inicio"],
             request.form["hr_fim"],
             request.form["descricao"],
-            (False if request.form.get("notificar") is None else True),
+            bool(request.form.get("notificar")),
             current_user,
         )
         return redirect("/")

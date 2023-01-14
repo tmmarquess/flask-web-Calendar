@@ -1,4 +1,4 @@
-import modules.database as database
+from modules.database import usuario_repository, evento_repository
 from resources.app import app, bcrypt, authenticate_user, db_session
 from flask import redirect, request, render_template
 from flask_login import current_user, login_required, logout_user
@@ -14,7 +14,7 @@ def register():
     if request.method == "GET":
         return render_template("register.html")
     if request.method == "POST":
-        database.add_user(
+        usuario_repository.add_user(
             request.form["name"],
             request.form["email"],
             bcrypt.generate_password_hash(request.form["password"]),
@@ -41,7 +41,7 @@ def login():
 @login_required
 def calendar():
     print("=====================")
-    print(database.get_all_user_events(current_user))
+    print(evento_repository.get_all_user_events(current_user))
     print("=====================")
     return render_template("calendar.html")
 

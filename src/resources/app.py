@@ -2,7 +2,7 @@ from flask import Flask
 from flask_login import login_manager, LoginManager, login_user
 from flask_bcrypt import Bcrypt
 from pony.flask import Pony, db_session
-import modules.database as database
+from modules.database import usuario_repository
 
 app = Flask(__name__)
 app.secret_key = "mySuperSecretKey"
@@ -15,12 +15,12 @@ login_manager.login_view = "/login"
 
 @login_manager.user_loader
 def load_user(user_id):
-    return database.get_user_by_id(user_id)
+    return usuario_repository.get_user_by_id(user_id)
 
 
 @db_session
 def authenticate_user(email, password):
-    possible_user = database.get_user_by_email(email)
+    possible_user = usuario_repository.get_user_by_email(email)
     if not possible_user:
         return False
 

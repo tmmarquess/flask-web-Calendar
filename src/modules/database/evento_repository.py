@@ -1,19 +1,7 @@
-from modules.models import db, Usuario, Evento
+from modules.models.Evento import Evento
+from modules.database.connection import db
 from pony.flask import db_session
 from pony.orm import select
-
-
-@db_session
-def add_user(name, email, password, birthday):
-    Usuario(nome=name, email=email, senha=password, dt_nascimento=birthday, status=1)
-
-
-def get_user_by_id(user_id):
-    return db.Usuario.get(id=user_id)
-
-
-def get_user_by_email(user_email):
-    return db.Usuario.get(email=user_email)
 
 
 @db_session
@@ -25,7 +13,7 @@ def add_event(nome, hr_inicio, hr_fim, descricao, notificar, curent_user):
         descricao=descricao,
         notificar=notificar,
         usuario=curent_user,
-        status=1
+        status=1,
     )
 
 
