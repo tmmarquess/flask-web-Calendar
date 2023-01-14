@@ -20,6 +20,28 @@ body {
     background-color: #E2E1DC;
 }
 
+a {
+    color: #84a1df;
+}
+
+input, select {
+    align-content: center;
+    display: block;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: -2px;
+    width: 60%;
+    box-sizing: border-box;
+    color: #2C3E50;
+    font-size: 13px;
+}
+
+.modalForm {
+    margin: 0 auto;
+}
+
+
 .calendar {
     position: relative;
     width: 100%;

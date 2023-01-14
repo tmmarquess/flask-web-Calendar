@@ -40,10 +40,8 @@ def login():
 @app.route("/calendar")
 @login_required
 def calendar():
-    print("=====================")
-    print(evento_repository.get_all_user_events(current_user))
-    print("=====================")
-    return render_template("calendar.html")
+    events = evento_repository.get_all_user_events(current_user)
+    return render_template("calendar.html", events=events)
 
 
 @app.route("/logout")

@@ -15,25 +15,6 @@
 </head>
 
 <body>
-
-    <div class="modal" tabindex="-1" id="testedpc">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitle">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Modal body text goes here.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="calendar">
         <div class="month">
             <i class="fa fa-bars"></i>
@@ -55,9 +36,87 @@
             <!-- Days are added with js-->
         </div>
     </div>
+
     <button class="add-event">
         <i class="fas fa-plus"></i>
     </button>
+
+    <div class="modal" tabindex="-1" id="showEvents">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="showEventsTitle">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="eventsList">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-info" id="btnAdd">adicionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" id="addEvent">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addEventTitle">Novo Evento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="addEventBody">
+                    <div class="modalForm">
+                        <form action="/create_event" method="post" id="formAdd">
+                            <label for="nome">nome:</label>
+                            <input type="text" name="nome" id="nomeAddNew" required><br>
+                            <label for="data">Data:</label>
+                            <input type="date" name="data" id="dataAddNew" required><br>
+                            <label for="Hora">Hora:</label>
+                            <input type="time" name="Hora" id="HoraAddNew" required><br>
+                            <label for="descricao">descrição:</label>
+                            <input type="text" name="descricao" id="descricaoAddNew" required><br>
+                            <label for="notificar">notificar:</label>
+                            <select name="notificar" id="notificarAddNew">
+                                <option value="1">sim</option>
+                                <option value="0">não</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-info" id="btnSubmit">adicionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" id="seeEvent">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="seeEventTitle">Novo Evento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="seeEventBody">
+                    <div class="modalForm">
+                        <form action="/create_event" method="post" id="formAdd">
+                            <p>Data: <span id="DataSeeEvent"></span></p>
+                            <p>Hora: <span id="HoraSeeEvent"></span></p>
+                            <p>descrição: <span id="descriçãoSeeEvent"></span></p>
+                            <p>notificar: <span id="notificarSeeEvent"></span></p>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-info" id="btnEdit">adicionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>
@@ -69,20 +128,28 @@
 </body>
 
 <script>
+    const eventsArray = {{ events| tojson | safe }};
 
-    var modalTitle = document.getElementById("modalTitle");
-
-    var modalvisualizar = new bootstrap.Modal(document.getElementById("testedpc"), {
+    var modalvisualizar = new bootstrap.Modal(document.getElementById("showEvents"), {
         keyboard: true,
         backdrop: 'static',
         focus: true
     });
 
-    function teste() {
-        modalvisualizar.show();
-    }
+    var modalAdicionar = new bootstrap.Modal(document.getElementById("addEvent"), {
+        keyboard: true,
+        backdrop: 'static',
+        focus: true
+    });
+
+    var modalVer = new bootstrap.Modal(document.getElementById("seeEvent"), {
+        keyboard: true,
+        backdrop: 'static',
+        focus: true
+    });
 
     initCalendar();
+
 </script>
 
 </html>
