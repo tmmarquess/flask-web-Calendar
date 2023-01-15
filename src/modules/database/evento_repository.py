@@ -43,7 +43,9 @@ def get_event_by_id(event_id):
 
 
 def get_all_user_events(current_user):
-    events = select(event for event in Evento if event.usuario == current_user)[:]
+    events = select(
+        event for event in Evento if event.usuario == current_user and event.status == 1
+    )[:]
     return convert_events_to_json(events)
 
 
@@ -55,3 +57,9 @@ def update_event(id, nome, data, hora, descricao, notificar):
     event.hora = hora
     event.descricao = descricao
     event.notificar = notificar
+
+
+@db_session
+def delete_event(id):
+    event = get_event_by_id(id)
+    event.status = 0

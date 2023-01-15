@@ -73,9 +73,12 @@
                         <p>notificar: <span id="notificarSeeEvent"></span></p>
                     </div>
                 </div>
+                <form action="/delete_event" method="post" id="formDelete">
+                    <input type="hidden" name="id" id="deleteId">
+                </form>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" id="btnEdit">Editar</button>
-                    <button type="button" class="btn btn-danger">Apagar</button>
+                    <button type="button" class="btn btn-danger" id="btnApagar">Apagar</button>
                 </div>
             </div>
         </div>
@@ -110,7 +113,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-info" id="btnSubmit">adicionar</button>
+                    <button type="button" class="btn btn-success" id="btnSubmit">Salvar</button>
                 </div>
             </div>
         </div>

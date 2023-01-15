@@ -32,3 +32,9 @@ def edit_event():
         bool(int(request.form.get("notificar"))),
     )
     return redirect("/")
+
+
+@app.route("/delete_event", methods=["post"])
+def delete_event():
+    evento_repository.delete_event(request.form["id"])
+    return redirect("/")

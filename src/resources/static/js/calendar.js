@@ -291,6 +291,13 @@ function showClickedEvent(eventId) {
         showEditevent(eventId);
     });
 
+    document.getElementById("btnApagar").addEventListener('click', (e) => {
+        if (window.confirm("Deseja mesmo apagar?")) {
+            document.getElementById("deleteId").value = eventId;
+            document.getElementById("formDelete").submit();
+        }
+    });
+
     modalTitle.innerText = event.name;
     data.innerText = currentDate;
     hora.innerText = event.time;
