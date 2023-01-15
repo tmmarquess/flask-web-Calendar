@@ -58,6 +58,29 @@
         </div>
     </div>
 
+    <div class="modal" tabindex="-1" id="seeEvent">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="seeEventTitle">Novo Evento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="seeEventBody">
+                    <div class="modalForm">
+                        <p>Data: <span id="DataSeeEvent"></span></p>
+                        <p>Hora: <span id="HoraSeeEvent"></span></p>
+                        <p>descrição: <span id="descriçãoSeeEvent"></span></p>
+                        <p>notificar: <span id="notificarSeeEvent"></span></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" id="btnEdit">Editar</button>
+                    <button type="button" class="btn btn-danger">Apagar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal" tabindex="-1" id="addEvent">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -68,6 +91,7 @@
                 <div class="modal-body" id="addEventBody">
                     <div class="modalForm">
                         <form action="/create_event" method="post" id="formAdd">
+                            <input type="hidden" id="idAddNew" name="id">
                             <label for="nome">nome:</label>
                             <input type="text" name="nome" id="nomeAddNew" required><br>
                             <label for="data">Data:</label>
@@ -87,31 +111,6 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                     <button type="button" class="btn btn-info" id="btnSubmit">adicionar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" tabindex="-1" id="seeEvent">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="seeEventTitle">Novo Evento</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="seeEventBody">
-                    <div class="modalForm">
-                        <form action="/create_event" method="post" id="formAdd">
-                            <p>Data: <span id="DataSeeEvent"></span></p>
-                            <p>Hora: <span id="HoraSeeEvent"></span></p>
-                            <p>descrição: <span id="descriçãoSeeEvent"></span></p>
-                            <p>notificar: <span id="notificarSeeEvent"></span></p>
-                        </form>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-info" id="btnEdit">adicionar</button>
                 </div>
             </div>
         </div>

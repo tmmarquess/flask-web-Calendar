@@ -10,7 +10,7 @@ let month = today.getMonth()
 let year = today.getFullYear()
 
 document.querySelector(".add-event").addEventListener('click', (e) => {
-    showAddEvent(0, 0, 0);
+    showAddEvent(0, 0, 0, false);
 });
 
 document.getElementById("btnSubmit").addEventListener('click', (e) => {
@@ -183,7 +183,7 @@ function showCurrentDayevents(currentDay, currentMonth, currentYear) {
 
     bntAdd.addEventListener('click', (e) => {
         modalvisualizar.hide();
-        showAddEvent(currentDay, currentMonth, currentYear);
+        showAddEvent(currentDay, currentMonth, currentYear, false);
     });
 
     modalTitle.innerText = `${currentDay} de ${months[currentMonth - 1]} de ${currentYear}`;
@@ -200,22 +200,62 @@ function showCurrentDayevents(currentDay, currentMonth, currentYear) {
     modalvisualizar.show();
 }
 
-function showAddEvent(currentDay, currentMonth, currentYear) {
-    if (currentYear != 0) {
+function showAddEvent(currentDay, currentMonth, currentYear, edit) {
+    if (currentMonth != 0) {
         let currentDate = ''
 
+
         if (currentMonth < 10) {
-            currentDate = `${currentYear}-0${currentMonth}-${currentDay}`;
+            currentDate = `${currentYear}-0${currentMonth}`;
         } else {
-            currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
+            currentDate = `${currentYear}-${currentMonth}`;
+        }
+
+        if (currentDay < 10) {
+            currentDate += `-0${currentDay}`;
+        } else {
+            currentDate += `-${currentDay}`;
         }
 
         document.getElementById("dataAddNew").value = currentDate;
     } else {
         document.getElementById("dataAddNew").value = '';
     }
+
+    if (edit == true) {
+        document.getElementById("addEventTitle").innerText = "Editar Evento";
+        document.getElementById("formAdd").action = '/edit_event';
+    } else {
+        document.getElementById("addEventTitle").innerText = "Novo Evento";
+        document.getElementById("formAdd").action = '/create_event';
+
+        document.getElementById("idAddNew").value = "";
+        document.getElementById("nomeAddNew").value = "";
+        document.getElementById("HoraAddNew").value = "";
+        document.getElementById("descricaoAddNew").value = "";
+        document.getElementById("notificarAddNew").value = 1;
+    }
+
     modalAdicionar.show();
 
+}
+
+function showEditevent(eventId) {
+    let event = getEventById(eventId);
+    console.log(event);
+    let id = document.getElementById("idAddNew");
+    let nome = document.getElementById("nomeAddNew");
+    let Hora = document.getElementById("HoraAddNew");
+    let descricao = document.getElementById("descricaoAddNew");
+    let notificar = document.getElementById("notificarAddNew");
+
+    id.value = event.id;
+    nome.value = event.name;
+    Hora.value = event.time;
+    descricao.value = event.descricao;
+    notificar.value = event.notificar == true ? 1 : 0;
+
+    showAddEvent(event.day, event.month, event.year, true);
 }
 
 function getEventById(eventId) {
@@ -247,9 +287,9 @@ function showClickedEvent(eventId) {
         currentDate = `${event.day}/${event.month}/${event.year}`;
     }
 
-    // document.getElementById("btnEdit").addEventListener('click', (e) => {
-
-    // });
+    document.getElementById("btnEdit").addEventListener('click', (e) => {
+        showEditevent(eventId);
+    });
 
     modalTitle.innerText = event.name;
     data.innerText = currentDate;

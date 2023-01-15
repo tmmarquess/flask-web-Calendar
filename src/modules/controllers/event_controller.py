@@ -19,3 +19,16 @@ def create_event():
             current_user,
         )
         return redirect("/")
+
+
+@app.route("/edit_event", methods=["post"])
+def edit_event():
+    evento_repository.update_event(
+        request.form["id"],
+        request.form["nome"],
+        request.form["data"],
+        request.form["Hora"],
+        request.form["descricao"],
+        bool(int(request.form.get("notificar"))),
+    )
+    return redirect("/")

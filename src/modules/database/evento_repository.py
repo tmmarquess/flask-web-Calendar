@@ -38,6 +38,20 @@ def convert_events_to_json(events):
     return events_list
 
 
+def get_event_by_id(event_id):
+    return db.Evento.get(id=event_id)
+
+
 def get_all_user_events(current_user):
     events = select(event for event in Evento if event.usuario == current_user)[:]
     return convert_events_to_json(events)
+
+
+@db_session
+def update_event(id, nome, data, hora, descricao, notificar):
+    event = get_event_by_id(id)
+    event.nome = nome
+    event.data = data
+    event.hora = hora
+    event.descricao = descricao
+    event.notificar = notificar
