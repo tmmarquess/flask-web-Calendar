@@ -24,7 +24,8 @@ a {
     color: #84a1df;
 }
 
-input, select {
+input,
+select {
     align-content: center;
     display: block;
     padding: 6px;
@@ -201,6 +202,16 @@ input, select {
 .modal-content {
     color: white;
     background-color: #333333;
+}
+
+.icon {
+    color: #FFF;
+    cursor: pointer;
+}
+
+.icon:hover {
+    color: var(--primary-clr);
+    cursor: pointer;
 }
 
 /* Responsivness */
