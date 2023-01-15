@@ -20,8 +20,9 @@
 
                 <i class="fa fa-user icon" type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Editar dados</a></li>
-                    <li><a class="dropdown-item" href="#">trocar senha</a></li>
+                    <li><a class="dropdown-item" href=" {{ url_for('user_data') }} ">Visualizar dados</a></li>
+                    <li><a class="dropdown-item" href=" {{url_for('edit_user')}} ">Editar dados</a></li>
+                    <li><a class="dropdown-item" href=" {{url_for('change_password')}} ">trocar senha</a></li>
                 </ul>
             </div>
 

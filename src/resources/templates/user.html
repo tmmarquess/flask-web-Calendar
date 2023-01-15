@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user.css')}}">
+    <link rel="stylesheet" href="../static/css/user.css">
+    <title>Usuário</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <h1>Usuário</h1>
+            <br>
+            <p>{{ current_user.nome }}</p>
+            <p>{{ current_user.email }}</p>
+            <p id="dt_nasc">{{ current_user.dt_nascimento }}</p>
+            <br>
+            <a href=" {{url_for('edit_user')}} "><input type="button" value="editar"></a>
+            <br>
+            <a href=" {{url_for('change_password')}} "><input type="button" value="trocar senha"></a>
+            <br>
+            <a href="#"><input type="button" value="Apagar conta" onclick="deleteUser();"></a>
+            <form action="/delete_user" method="post" id="delete"></form>
+        </div>
+    </div>
+</body>
+<script>
+    let dataNasc = document.getElementById("dt_nasc");
+    let birthday = dataNasc.innerText.split("-");
+    dataNasc.innerText = `${birthday[2]}/${birthday[1]}/${birthday[0]}`
+
+    function deleteUser() {
+        if (confirm("Deseja mesmo apagar a conta?")) {
+            document.getElementById("delete").submit();
+        }
+    }
+</script>
+
+</html>
