@@ -28,30 +28,52 @@ Antes de começar, você precisa ter instalado no seu computador as ferramentas:
 
 Para instalar a aplicação, siga estas etapas:
 
+#### **Clone o repositório para o seu computador:**
+
 ``` bash
 # Clone o repositório para o seu computador
 $ git clone https://github.com/tmmarquess/flask-web-Calendar.git
 
 # Navegue para a pasta do código
 $ cd flask-web-Calendar
-
-**opcional**
-# É recomendado criar uma venv para instalar as dependências da aplicação
+```
+#### **crie uma virtual env para o projeto: (opcional)**
+> É recomendado criar uma venv para instalar as dependências da aplicação
+``` bash 
+$ venv <nome_da_venv>
+```
+Caso o comando acima retorne um erro, tente usar:
+``` bash
 $ python -m venv <nome_da_venv>
-
+```
+Ativando a venv:
+``` bash
 # Ativando venv em shell
 $ source <nome_da_venv>/bin/activate
 
 # Ativando venv no windows
 $ <nome_da_venv>\Scripts\activate.bat
-
-# Instalando dependências do projeto
-$ pip install -r requirements.txt
-
-# Executando a aplicação
-$ python src/
 ```
 >  Para mais informações sobre venv's, consulte [Python Docs](https://docs.python.org/3/library/venv.html)
+#### **Instale as dependências:**
+``` bash
+# Instalando as dependências do projeto
+$ pip install -r requirements.txt
+```
+Caso o comando acima retorne um erro, tente usar:
+``` bash
+$ python -m pip install -r requirements.txt
+```
+#### **Execute a aplicação:**
+``` bash
+# Executando a aplicação
+$ flask run
+```
+Caso o comando acima retorne um erro, tente usar:
+``` bash
+# Executando a aplicação
+$ python -m flask run
+```
 
 ## Documentação 🗃️
 

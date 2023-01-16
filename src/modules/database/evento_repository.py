@@ -1,5 +1,5 @@
-from modules.models.Evento import Evento
-from modules.database.connection import db
+from src.modules.models.Evento import Evento
+from src.modules.database.connection import db
 from pony.flask import db_session
 from pony.orm import select
 import json

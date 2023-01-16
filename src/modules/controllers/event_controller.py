@@ -1,5 +1,5 @@
-import modules.database.evento_repository as evento_repository
-from resources.app import app
+import src.modules.database.evento_repository as evento_repository
+from src.resources.app import app
 from flask import redirect, request, render_template
 from flask_login import current_user, login_required
 

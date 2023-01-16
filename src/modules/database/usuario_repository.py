@@ -1,7 +1,7 @@
-from modules.models.Usuario import Usuario
-from modules.database.connection import db
+from src.modules.models.Usuario import Usuario
+from src.modules.database.connection import db
 from pony.flask import db_session
-from resources.app import bcrypt
+from src.resources.app import bcrypt
 
 
 @db_session

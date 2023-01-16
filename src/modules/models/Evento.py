@@ -1,5 +1,5 @@
-from modules.database.connection import db
-from modules.models.Usuario import Usuario
+from src.modules.database.connection import db
+from src.modules.models.Usuario import Usuario
 from pony.orm import Required, PrimaryKey
 from datetime import date
 

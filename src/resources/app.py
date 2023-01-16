@@ -2,10 +2,9 @@ from flask import Flask
 from flask_login import login_manager, LoginManager, login_user
 from flask_bcrypt import Bcrypt
 from pony.flask import Pony, db_session
-from modules.database import usuario_repository
+from src.modules.database import usuario_repository
 
 app = Flask(__name__)
-# app.debug = True
 app.secret_key = "mySuperSecretKey"
 bcrypt = Bcrypt(app)
 

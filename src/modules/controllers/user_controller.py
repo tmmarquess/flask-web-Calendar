@@ -1,5 +1,5 @@
-from modules.database import usuario_repository
-from resources.app import app
+from src.modules.database import usuario_repository
+from src.resources.app import app
 from flask import redirect, request, render_template
 from flask_login import current_user, login_required, logout_user
 

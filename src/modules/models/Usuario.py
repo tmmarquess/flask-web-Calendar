@@ -1,4 +1,4 @@
-from modules.database.connection import db
+from src.modules.database.connection import db
 from pony.orm import Required, PrimaryKey, Set
 from flask_login import UserMixin
 from datetime import date
