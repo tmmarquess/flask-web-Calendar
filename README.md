@@ -4,7 +4,7 @@
 
 Projeto de calendário utilizando Flask + SQLite para composição de nota na disciplina de modelagem e projeto de sistemas
 
-> [Documentação](https://tmmarquess.github.io/flask-web-calendar)
+> [Documentação](https://tmmarquess.github.io/flask-web-Calendar/)
 
 ## Executando o projeto 🚀
 
