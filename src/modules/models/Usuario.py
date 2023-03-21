@@ -29,3 +29,12 @@ class Usuario(db.Entity, UserMixin):
 
     def set_authenticated(self, value: bool):
         self.__is_authenticated = value
+
+    def to_json(self):
+        return dict(
+            id=self.id,
+            email=self.email,
+            nome=self.nome,
+            dt_nascimento=self.dt_nascimento,
+            status=self.status,
+        )

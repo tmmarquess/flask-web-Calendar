@@ -1,15 +1,15 @@
-POST /users - Criar um novo usuário
-GET /users - retornar todos os usuários
-GET /users/{id} - retorna os dados do usuário com aquele id
-PATCH /users/{id} - edita os dados do usuário com aquele id
-DELETE /users/{id} - apaga os dados do usuário com aquele id
+GET /users - retornar todos os usuários -- ok
+POST /users - Criar um novo usuário -- ok
+DELETE /users/{id} - apaga os dados do usuário com aquele id -- ok
+GET /users/{id} - retorna os dados do usuário com aquele id -- ok
+PATCH /users/{id} - edita os dados do usuário com aquele id -- ok
+PUT /users/{id} - edita a senha do usuário com aquele id
 
-GET /calendar/user/{id} - retorna todos os eventos daquele usuário
-POST /calendar/events - cria um novo evento
-GET /calendar/events/{id} - retorna o evento com aquele id
-PATCH /calendar/events/{id} - edita o evento com aquele id 
-DELETE /calendar/events/{id} - apaga o evento com aquele id 
-GET /calendar/day/{YYYY-MM-DD} - retorna os eventos daquele usuario no dia selecionado
+GET /events/ - retorna todos os eventos
+POST /events/ - cria um novo evento
+DELETE /events/{id} - apaga o evento com aquele id 
+GET /events/{id} - retorna o evento com aquele id
+PATCH /events/{id} - edita o evento com aquele id 
 
 POST /login - Logar o usuário
 GET /logout/{id} - deslogar o usuário

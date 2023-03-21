@@ -1,0 +1,111 @@
+openapi: 3.0.0
+info:
+  title: "MPS Flask REST API"
+  version: "1.0.0"
+  description: "An API about people and notes"
+servers:
+  - url: "/api"
+
+components:
+  schemas:
+    User:
+      type: "object"
+      required:
+        - user_name
+        - user_email
+        - user_password
+        - user_birthday
+      properties:
+        user_name:
+          type: "string"
+        user_email:
+          type: "string"
+        user_password:
+          type: "string"
+        user_birthday:
+          type: "string"
+    User_edit:
+      type: "object"
+      properties:
+        user_name:
+          type: "string"
+        user_email:
+          type: "string"
+        user_birthday:
+          type: "string"
+  parameters:
+    user_id:
+      name: "user_id"
+      description: "ID of the person to get"
+      in: path
+      required: True
+      schema:
+        type: "string"
+
+paths:
+  /users:
+    get:
+      operationId: "src.modules.database.usuario_repository.read_all"
+      tags:
+        - "User"
+      summary: "Read the list of users"
+      responses:
+        "200":
+          description: "Sucessfully read user list"
+    post:
+      operationId: "src.modules.database.usuario_repository.add_user_api"
+      tags:
+        - "User"
+      summary: "Create a new User"
+      requestBody:
+        description: "User to create"
+        required: true
+        content:
+          application/json:
+            schema:
+              x-body-name: "user"
+              $ref: "#/components/schemas/User"
+      responses:
+        "201":
+          description: "Sucessfully created user"
+        "501":
+          description: "This email is already in use"
+  /users/{user_id}:
+    get:
+      operationId: "src.modules.database.usuario_repository.get_user_by_id_api"
+      tags:
+        - "User"
+      summary: "Read one user"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        "200":
+          description: "Sucessfully read user"
+        "404":
+          description: "User not found"
+    patch:
+      tags:
+        - "User"
+      operationId: "src.modules.database.usuario_repository.update_user_api"
+      summary: "Update an user"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        "200":
+          description: "Successfully updated user"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              x-body-name: "user"
+              $ref: "#/components/schemas/User_edit"
+    delete:
+      tags:
+        - "User"
+      operationId: "src.modules.database.usuario_repository.delete_user"
+      summary: "Delete an user"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        "204":
+          description: "Successfully deleted user"

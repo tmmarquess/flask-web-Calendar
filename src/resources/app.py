@@ -3,13 +3,16 @@ from flask_login import login_manager, LoginManager, login_user
 from flask_bcrypt import Bcrypt
 from pony.flask import Pony, db_session
 from src.modules.database import usuario_repository
+import connexion
 
-app = Flask(__name__)
-app.secret_key = "mySuperSecretKey"
-bcrypt = Bcrypt(app)
+app = connexion.App(__name__, specification_dir="../")
+app.add_api("swagger.yml")
 
-Pony(app)
-login_manager = LoginManager(app)
+app.app.secret_key = "mySuperSecretKey"
+bcrypt = Bcrypt(app.app)
+
+Pony(app.app)
+login_manager = LoginManager(app.app)
 login_manager.login_view = "/login"
 
 

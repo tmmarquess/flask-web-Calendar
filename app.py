@@ -6,4 +6,4 @@ from get_ip import get_ip
 
 
 if __name__ == "__main__":
-    app.run(host=get_ip(), port=5000, debug=False, threaded=True)
+    app.run(host=get_ip(), port=5000, debug=True, threaded=True)
