@@ -33,6 +33,16 @@ components:
           type: "string"
         user_birthday:
           type: "string"
+    password_change:
+      type: "object"
+      required:
+        - old_password
+        - new_password
+      properties:
+        old_password:
+          type: "string"
+        new_password:
+          type: "string"
   parameters:
     user_id:
       name: "user_id"
@@ -109,3 +119,21 @@ paths:
       responses:
         "204":
           description: "Successfully deleted user"
+    put:
+      tags:
+        - "User"
+      operationId: "src.modules.database.usuario_repository.change_password_api"
+      summary: "Update an user's password"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              x-body-name: "passwords"
+              $ref: "#/components/schemas/password_change"
+      responses:
+        "201":
+          description: "Password changed"
+        "501":
+          description: "Something went wrong"

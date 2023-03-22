@@ -3,7 +3,7 @@ POST /users - Criar um novo usuário -- ok
 DELETE /users/{id} - apaga os dados do usuário com aquele id -- ok
 GET /users/{id} - retorna os dados do usuário com aquele id -- ok
 PATCH /users/{id} - edita os dados do usuário com aquele id -- ok
-PUT /users/{id} - edita a senha do usuário com aquele id
+PUT /users/{id} - edita a senha do usuário com aquele id -- ok
 
 GET /events/ - retorna todos os eventos
 POST /events/ - cria um novo evento

@@ -1,7 +1,7 @@
 from src.modules.models.Usuario import Usuario
 from src.modules.database.connection import db
 from pony.flask import db_session
-from bcrypt import hashpw, gensalt
+from bcrypt import hashpw, gensalt, checkpw
 from flask import make_response
 
 
@@ -75,13 +75,20 @@ def update_user_api(user_id, user):
         return make_response(f"User with id {user_id} not found", 404)
 
 
+def change_password_api(user_id, passwords):
+    if change_password(user_id, passwords["old_password"], passwords["new_password"]):
+        return make_response("Password changed sucessfully", 201)
+    else:
+        return make_response("Something went wrong", 501)
+
+
 @db_session
-def change_password(id, oldPass, newPass, bcrypt):
+def change_password(id, oldPass, newPass):
     user = get_user_by_id(id)
-    password_checked = bcrypt.check_password_hash(user.senha, oldPass)
+    password_checked = checkpw(oldPass.encode("utf-8"), user.senha)
 
     if password_checked:
-        user.senha = bcrypt.generate_password_hash(newPass)
+        user.senha = hashpw(newPass.encode("utf-8"), gensalt())
         return True
     else:
         return False

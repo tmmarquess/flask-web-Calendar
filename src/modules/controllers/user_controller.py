@@ -2,7 +2,6 @@ from src.modules.database import usuario_repository
 from src.resources.app import app
 from flask import redirect, request, render_template
 from flask_login import current_user, login_required, logout_user
-from src.resources.app import bcrypt
 
 
 @app.route("/user")
@@ -36,7 +35,6 @@ def change_password():
             request.form["id"],
             request.form["oldPass"],
             request.form["newPass"],
-            bcrypt,
         )
         if password_changed:
             return redirect("/")
