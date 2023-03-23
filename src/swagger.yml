@@ -179,6 +179,19 @@ paths:
           description: "Password changed"
         "501":
           description: "Something went wrong"
+  /users/{user_id}/events:
+    get:
+      operationId: "src.modules.controllers.api_controller.get_user_events"
+      tags:
+        - "Events"
+      summary: "Get the events from a user"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        "200":
+          description: "Sucessfully get events"
+        "404":
+          description: "User not found"
   /events:
     get:
       operationId: "src.modules.controllers.api_controller.get_all_events"

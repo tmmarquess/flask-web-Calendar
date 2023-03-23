@@ -90,6 +90,14 @@ def add_event(event):
         return make_response(f'user with id {event["user_id"]} not found', 501)
 
 
+def get_user_events(user_id):
+    user = usuario_repository.get_user_by_id(user_id)
+    if user:
+        return make_response(evento_repository.get_all_user_events(user), 200)
+    else:
+        return make_response(f"user with id {user_id} not found", 404)
+
+
 def get_event_by_id(event_id):
     event = evento_repository.get_event_by_id(event_id)
     if event:
