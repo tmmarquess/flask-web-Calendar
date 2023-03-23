@@ -43,6 +43,26 @@ components:
           type: "string"
         new_password:
           type: "string"
+    Event:
+      type: "object"
+      required:
+        - name
+        - date
+        - time
+        - user_id
+      properties:
+        name:
+          type: "string"
+        date:
+          type: "string"
+        time:
+          type: "string"
+        description:
+          type: "string"
+        notify:
+          type: "boolean"
+        user_id:
+          type: "string"
   parameters:
     user_id:
       name: "user_id"
@@ -51,11 +71,18 @@ components:
       required: True
       schema:
         type: "string"
+    event_id:
+      name: "event_id"
+      description: "ID of the event to get"
+      in: path
+      required: True
+      schema:
+        type: "string"
 
 paths:
   /users:
     get:
-      operationId: "src.modules.database.usuario_repository.read_all"
+      operationId: "src.modules.controllers.api_controller.get_all_users"
       tags:
         - "User"
       summary: "Read the list of users"
@@ -63,7 +90,7 @@ paths:
         "200":
           description: "Sucessfully read user list"
     post:
-      operationId: "src.modules.database.usuario_repository.add_user_api"
+      operationId: "src.modules.controllers.api_controller.add_user"
       tags:
         - "User"
       summary: "Create a new User"
@@ -82,7 +109,7 @@ paths:
           description: "This email is already in use"
   /users/{user_id}:
     get:
-      operationId: "src.modules.database.usuario_repository.get_user_by_id_api"
+      operationId: "src.modules.controllers.api_controller.get_user_by_id"
       tags:
         - "User"
       summary: "Read one user"
@@ -96,7 +123,7 @@ paths:
     patch:
       tags:
         - "User"
-      operationId: "src.modules.database.usuario_repository.update_user_api"
+      operationId: "src.modules.controllers.api_controller.update_user"
       summary: "Update an user"
       parameters:
         - $ref: "#/components/parameters/user_id"
@@ -112,7 +139,7 @@ paths:
     delete:
       tags:
         - "User"
-      operationId: "src.modules.database.usuario_repository.delete_user"
+      operationId: "src.modules.controllers.api_controller.delete_user"
       summary: "Delete an user"
       parameters:
         - $ref: "#/components/parameters/user_id"
@@ -122,7 +149,7 @@ paths:
     put:
       tags:
         - "User"
-      operationId: "src.modules.database.usuario_repository.change_password_api"
+      operationId: "src.modules.controllers.api_controller.change_password"
       summary: "Update an user's password"
       parameters:
         - $ref: "#/components/parameters/user_id"
@@ -137,3 +164,43 @@ paths:
           description: "Password changed"
         "501":
           description: "Something went wrong"
+  /events:
+    get:
+      operationId: "src.modules.database.evento_repository.read_all"
+      tags:
+        - "Events"
+      summary: "Read the list of events"
+      responses:
+        "200":
+          description: "Sucessfully read events list"
+    post:
+      operationId: "src.modules.database.evento_repository.add_event_api"
+      tags:
+        - "Events"
+      summary: "Create a new Event"
+      requestBody:
+        description: "Event to create"
+        required: true
+        content:
+          application/json:
+            schema:
+              x-body-name: "event"
+              $ref: "#/components/schemas/Event"
+      responses:
+        "201":
+          description: "Sucessfully created event"
+        "501":
+          description: "User not found"
+  /events/{event_id}:
+    get:
+      operationId: "src.modules.database.evento_repository.get_user_by_id"
+      tags:
+        - "Events"
+      summary: "Read one event"
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+      responses:
+        "200":
+          description: "Sucessfully read user"
+        "404":
+          description: "User not found"
