@@ -64,3 +64,58 @@ def delete_user(user_id):
         return make_response(f"Sucessfully deleted user with id {user_id}", 204)
     else:
         return make_response(f"User with id {user_id} not found", 404)
+
+
+def get_all_events():
+    return evento_repository.convert_events_to_json(
+        evento_repository.Evento.select(lambda U: not U.status == 0)
+    )
+
+
+def add_event(event):
+    user = usuario_repository.get_user_by_id(event["user_id"])
+    if user:
+        return make_response(
+            evento_repository.add_event(
+                event["name"],
+                event["date"],
+                event["time"],
+                event["description"],
+                event["notify"],
+                user,
+            ).to_json(),
+            201,
+        )
+    else:
+        return make_response(f'user with id {event["user_id"]} not found', 501)
+
+
+def get_event_by_id(event_id):
+    event = evento_repository.get_event_by_id(event_id)
+    if event:
+        return make_response(event.to_json(), 200)
+    else:
+        return make_response(f"event with id {event_id} not found", 404)
+
+
+def delete_event(event_id):
+    if evento_repository.delete_event(event_id):
+        return make_response(f"Sucessfully deleted event with id {event_id}", 204)
+    else:
+        return make_response(f"event with id {event_id} not found", 404)
+
+
+def update_event(event_id, event: dict):
+    loaded_event = evento_repository.get_event_by_id(event_id)
+    if loaded_event:
+        evento_repository.update_event(
+            event_id,
+            event.get("name", loaded_event.nome),
+            event.get("date", loaded_event.data),
+            event.get("time", loaded_event.hora),
+            event.get("description", loaded_event.descricao),
+            event.get("notify", loaded_event.notificar),
+        )
+        return get_event_by_id(event_id)
+    else:
+        return make_response(f"Event with id {event_id} not found", 404)

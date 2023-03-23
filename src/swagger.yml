@@ -63,6 +63,19 @@ components:
           type: "boolean"
         user_id:
           type: "string"
+    event_edit:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        date:
+          type: "string"
+        time:
+          type: "string"
+        description:
+          type: "string"
+        notify:
+          type: "boolean"
   parameters:
     user_id:
       name: "user_id"
@@ -146,6 +159,8 @@ paths:
       responses:
         "204":
           description: "Successfully deleted user"
+        "404":
+          description: "User not found"
     put:
       tags:
         - "User"
@@ -166,7 +181,7 @@ paths:
           description: "Something went wrong"
   /events:
     get:
-      operationId: "src.modules.database.evento_repository.read_all"
+      operationId: "src.modules.controllers.api_controller.get_all_events"
       tags:
         - "Events"
       summary: "Read the list of events"
@@ -174,7 +189,7 @@ paths:
         "200":
           description: "Sucessfully read events list"
     post:
-      operationId: "src.modules.database.evento_repository.add_event_api"
+      operationId: "src.modules.controllers.api_controller.add_event"
       tags:
         - "Events"
       summary: "Create a new Event"
@@ -190,17 +205,45 @@ paths:
         "201":
           description: "Sucessfully created event"
         "501":
-          description: "User not found"
+          description: "Event not found"
   /events/{event_id}:
     get:
-      operationId: "src.modules.database.evento_repository.get_user_by_id"
+      operationId: "src.modules.controllers.api_controller.get_event_by_id"
       tags:
         - "Events"
       summary: "Read one event"
       parameters:
-        - $ref: "#/components/parameters/user_id"
+        - $ref: "#/components/parameters/event_id"
       responses:
         "200":
-          description: "Sucessfully read user"
+          description: "Sucessfully read event"
         "404":
-          description: "User not found"
+          description: "event not found"
+    delete:
+      tags:
+        - "Events"
+      operationId: "src.modules.controllers.api_controller.delete_event"
+      summary: "Delete an event"
+      parameters:
+        - $ref: "#/components/parameters/event_id"
+      responses:
+        "204":
+          description: "Successfully deleted event"
+        "404":
+          description: "Event not found"
+    patch:
+      tags:
+        - "Events"
+      operationId: "src.modules.controllers.api_controller.update_event"
+      summary: "Update an event"
+      parameters:
+        - $ref: "#/components/parameters/event_id"
+      responses:
+        "200":
+          description: "Successfully updated event"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              x-body-name: "event"
+              $ref: "#/components/schemas/event_edit"

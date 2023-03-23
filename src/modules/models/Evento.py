@@ -13,3 +13,18 @@ class Evento(db.Entity):
     notificar = Required(bool)
     status = Required(int)
     usuario = Required(Usuario)
+
+    def to_json(self):
+        return dict(
+            id=self.id,
+            name=self.nome,
+            date=self.data,
+            day=self.data.day,
+            month=self.data.month,
+            year=self.data.year,
+            time=self.hora,
+            description=self.descricao,
+            notify=self.notificar,
+            status=self.status,
+            usuario=self.usuario.id,
+        )

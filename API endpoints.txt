@@ -7,9 +7,9 @@ PUT /users/{id} - edita a senha do usuário com aquele id -- ok
 
 GET /events/ - retorna todos os eventos -- ok
 POST /events/ - cria um novo evento -- ok
-DELETE /events/{id} - apaga o evento com aquele id 
-GET /events/{id} - retorna o evento com aquele id
-PATCH /events/{id} - edita o evento com aquele id 
+DELETE /events/{id} - apaga o evento com aquele id -- ok
+GET /events/{id} - retorna o evento com aquele id -- ok
+PATCH /events/{id} - edita o evento com aquele id -- ok
 
 POST /login - Logar o usuário
 GET /logout/{id} - deslogar o usuário
