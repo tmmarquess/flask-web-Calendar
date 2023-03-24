@@ -1,4 +1,3 @@
-from flask import Flask
 from flask_login import login_manager, LoginManager, login_user
 from flask_bcrypt import Bcrypt
 from pony.flask import Pony, db_session

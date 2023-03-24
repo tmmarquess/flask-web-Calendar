@@ -5,7 +5,7 @@ GET /users/{id} - retorna os dados do usuário com aquele id -- ok
 PATCH /users/{id} - edita os dados do usuário com aquele id -- ok
 PUT /users/{id} - edita a senha do usuário com aquele id -- ok
 
-GET /users/{id}/events - retorna todos os eventos daquele usuário
+GET /users/{id}/events - retorna todos os eventos daquele usuário -- ok
 
 GET /events/ - retorna todos os eventos -- ok
 POST /events/ - cria um novo evento -- ok
