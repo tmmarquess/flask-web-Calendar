@@ -4,13 +4,15 @@ from pony.flask import Pony, db_session
 from src.modules.database import usuario_repository
 import connexion
 
-app = connexion.App(__name__, specification_dir="../")
+appConnexion = connexion.App(__name__, specification_dir="../")
 
-app.app.secret_key = "mySuperSecretKey"
-bcrypt = Bcrypt(app.app)
+app = appConnexion.app
 
-Pony(app.app)
-login_manager = LoginManager(app.app)
+app.secret_key = "mySuperSecretKey"
+bcrypt = Bcrypt(app)
+
+Pony(app)
+login_manager = LoginManager(app)
 login_manager.login_view = "/login"
 
 
@@ -33,4 +35,4 @@ def authenticate_user(email, password):
         return False
 
 
-app.add_api("swagger.yml")
+appConnexion.add_api("swagger.yml")
