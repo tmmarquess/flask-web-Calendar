@@ -5,7 +5,6 @@ from src.modules.database import usuario_repository
 import connexion
 
 app = connexion.App(__name__, specification_dir="../")
-app.add_api("swagger.yml")
 
 app.app.secret_key = "mySuperSecretKey"
 bcrypt = Bcrypt(app.app)
@@ -32,3 +31,6 @@ def authenticate_user(email, password):
         return True
     else:
         return False
+
+
+app.add_api("swagger.yml")

@@ -252,8 +252,8 @@ function showEditevent(eventId) {
     id.value = event.id;
     nome.value = event.name;
     Hora.value = event.time;
-    descricao.value = event.descricao;
-    notificar.value = event.notificar == true ? 1 : 0;
+    descricao.value = event.description;
+    notificar.value = event.notify == true ? 1 : 0;
 
     showAddEvent(event.day, event.month, event.year, true);
 }
@@ -301,8 +301,8 @@ function showClickedEvent(eventId) {
     modalTitle.innerText = event.name;
     data.innerText = currentDate;
     hora.innerText = event.time;
-    descricao.innerText = event.descricao
-    notificar.innerText = event.notificar == true ? 'Sim' : 'Não';
+    descricao.innerText = event.description
+    notificar.innerText = event.notify == true ? 'Sim' : 'Não';
 
     modalVer.show();
 }

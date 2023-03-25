@@ -49,7 +49,6 @@ components:
         - name
         - date
         - time
-        - user_id
       properties:
         name:
           type: "string"
@@ -61,8 +60,6 @@ components:
           type: "string"
         notify:
           type: "boolean"
-        user_id:
-          type: "string"
     event_edit:
       type: "object"
       properties:
@@ -76,6 +73,16 @@ components:
           type: "string"
         notify:
           type: "boolean"
+    login:
+      type: "object"
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: "string"
+        password:
+          type: "string"
   parameters:
     user_id:
       name: "user_id"
@@ -260,3 +267,33 @@ paths:
             schema:
               x-body-name: "event"
               $ref: "#/components/schemas/event_edit"
+  /login:
+    post:
+      operationId: "src.modules.controllers.api_controller.login"
+      tags:
+        - "Authentication"
+      summary: "Login a user"
+      requestBody:
+        description: "email and password"
+        required: true
+        content:
+          application/json:
+            schema:
+              x-body-name: "credentials"
+              $ref: "#/components/schemas/login"
+      responses:
+        "201":
+          description: "Sucessfully Login"
+        "501":
+          description: "wrong credentials"
+  /logout:
+    get:
+      operationId: "src.modules.controllers.api_controller.logout"
+      tags:
+        - "Authentication"
+      summary: "Logout current user"
+      responses:
+        "200":
+          description: "Sucessfully Logout"
+        "501":
+          description: "There is no user active in this session"
