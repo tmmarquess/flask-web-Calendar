@@ -134,9 +134,9 @@ def add_event(event):
 def get_user_events(user_id):
     if not __is_current_user_authenticated():
         return make_response("Authentication Required", 505)
-    if current_user.id != user_id:
+    if current_user.id != int(user_id):
         return make_response("You can only get your events", 501)
-    return make_response(evento_repository.get_all_user_events(user), 200)
+    return make_response(evento_repository.get_all_user_events(current_user), 200)
 
 
 def get_event_by_id(event_id):
